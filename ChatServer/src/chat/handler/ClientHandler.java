@@ -92,7 +92,12 @@ public class ClientHandler {
                 return;
             }
             else if(message.startsWith(PRIVATE_MSG_PREFIX)){
-                //TODO
+                // удаляем префикс
+                message = message.substring(2);
+                // отделяем ник пользователя от тела сообщения
+                String[] message_compound = message.split("\\s+", 2);
+                // вызываем функцию приватных сообщений
+                myServer.privateMessage(message_compound[1].trim(), this, message_compound[0].trim(), false);
             }
             else {
                 myServer.broadcastMessage(message, this, false);

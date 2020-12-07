@@ -84,4 +84,14 @@ public class MyServer {
             client.sendMessage(isServerInfoMsg ? null : sender.getUsername(), message);
         }
     }
+
+    // Метод отправки приватных сообщений
+    public void privateMessage(String message, ClientHandler sender, String recipientName, boolean isServerInfoMsg) throws IOException {
+        for (ClientHandler client : clients) {
+            if(client.getUsername().equals(recipientName)) {
+                client.sendMessage(isServerInfoMsg ? null : sender.getUsername(), message);
+                break;
+            }
+        }
+    }
 }
